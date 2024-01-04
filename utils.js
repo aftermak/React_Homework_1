@@ -2,13 +2,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var renderArray = function renderArray(arr) {
   return arr.length ? React.createElement(
-    "tr",
+    "ol",
     null,
-    arr.map(function (item) {
+    arr.map(function (item, index) {
       return React.createElement(
-        "th",
-        { key: item.id },
-        item.brand
+        "li",
+        { key: index },
+        Array.isArray(item) ? renderArray(item) : renderObject(item)
       );
     })
   ) : null;
@@ -16,11 +16,11 @@ var renderArray = function renderArray(arr) {
 
 var renderObject = function renderObject(obj) {
   return Object.keys(obj).length ? React.createElement(
-    "ul",
+    "tr",
     null,
     Object.keys(obj).map(function (key, index) {
       return React.createElement(
-        "li",
+        "th",
         { key: index },
         _typeof(obj[key]) === "object" ? Array.isArray(obj[key]) ? renderArray(obj[key]) : obj[key] !== null && renderObject(obj[key]) : obj[key]
       );

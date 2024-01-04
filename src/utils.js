@@ -1,28 +1,28 @@
 const renderArray = (arr) => {
-  return arr.length ? <tr>
+  return arr.length ? <ol>
       {
-          arr.map((item) => {
-              return <th key={item.id}>
-                  {item.brand}
-              </th>
+          arr.map((item, index) => {
+              return <li key={index}>
+                  {Array.isArray(item) ? renderArray(item) : renderObject(item)}
+              </li>
           })
       }
-  </tr> : null;
+  </ol> : null;
 }
 
 const renderObject = (obj) => {
 return Object.keys(obj).length ? (
-  <ul>
+  <tr>
     {Object.keys(obj).map((key, index) => {
       return (
-        <li key={index}>
+        <th key={index}>
           {typeof obj[key] === `object`
             ? Array.isArray(obj[key]) ? renderArray(obj[key]) : obj[key]!== null && renderObject(obj[key])
             : obj[key]}
-        </li>
+        </th>
       );
     })}
-  </ul>
+  </tr>
 ) : null;
 };
 

@@ -13,11 +13,7 @@ var Header = function Header() {
 };
 
 var Body = function Body() {
-    return React.createElement(
-        "tbody",
-        null,
-        renderArray(CARS)
-    );
+    return renderArray(CARS);
 };
 
 var Table = function Table() {
