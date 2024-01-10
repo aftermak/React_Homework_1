@@ -1,30 +1,24 @@
-import { renderObject, renderArray } from "./utils.js";
+import { renderTable } from "./utils.js";
 import { CARS } from "./const.js";
 
 const domContainer = document.querySelector('#root');
 const root = ReactDOM.createRoot(domContainer);
 
 const Header = () => {
-    return <caption>
-        Car Specs
-    </caption>
-};
-
-const Body = () => {
-    return renderArray(CARS);
-};
+    return <h1>Car Specs</h1>
+}
 
 const Table = () => {
     return <table>
-        <Header />
-        <Body />
+        {renderTable(CARS)}
     </table>
-};
+}
 
 const App = () => {
-    return <React.Fragment>
-        <Table />
-    </React.Fragment>
+  return <React.Fragment>
+      <Header />
+      <Table />
+  </React.Fragment>
 };
 
 root.render(<App />);
